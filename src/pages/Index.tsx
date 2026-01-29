@@ -90,6 +90,54 @@ const Index = () => {
     },
   ];
 
+  const targetAudience = [
+    {
+      title: 'Частные специалисты',
+      subtitle: 'Фрилансеры и самозанятые',
+      examples: 'Психологи, юристы, репетиторы, фотографы, косметологи, диетологи',
+      pain: 'Клиенты из соцсетей приходят нерегулярно, сложно выделиться среди конкурентов, приходится каждому лично объяснять цены и условия',
+      solution: 'Личный бренд, упаковка кейсов, автоматизация записи, доверие',
+      icon: 'User',
+      gradient: 'from-primary/20 to-primary/5'
+    },
+    {
+      title: 'Малый локальный бизнес',
+      subtitle: 'Offline-точки',
+      examples: 'Мастерские по ремонту, кофейни, цветочные лавки, автосервисы, ателье',
+      pain: 'Нас нет на карте, нас сложно найти в поиске Яндекса/Google, люди не знают наш прайс и режим работы',
+      solution: 'Присутствие в поиске (SEO), карта проезда, каталог услуг',
+      icon: 'Store',
+      gradient: 'from-secondary/20 to-secondary/5'
+    },
+    {
+      title: 'Инфобизнес и эксперты',
+      subtitle: 'Спикеры, коучи, авторы курсов',
+      examples: 'Онлайн-консультанты, тренеры, наставники, организаторы вебинаров',
+      pain: 'Нужно быстро собрать аудиторию на вебинар или продать консультацию, но полноценный лендинг делать долго и дорого',
+      solution: 'Мини-лендинг под конкретную услугу, сбор контактов (лид-магнит)',
+      icon: 'Presentation',
+      gradient: 'from-accent/20 to-accent/5'
+    },
+    {
+      title: 'Производители handmade',
+      subtitle: 'Товары ручной работы',
+      examples: 'Мастера по мебели, ювелиры, создатели крафтовой косметики',
+      pain: 'В соцсетях работы теряются в ленте, сложно показать все коллекции структурированно',
+      solution: 'Эстетичное портфолио/каталог, которое подчеркивает ценность продукта',
+      icon: 'Hammer',
+      gradient: 'from-primary/20 to-secondary/5'
+    },
+    {
+      title: 'B2B компании',
+      subtitle: 'Начальный уровень',
+      examples: 'Небольшие оптовые поставщики, клининговые компании для офисов',
+      pain: 'При тендерах или поиске партнеров у нас спрашивают сайт для проверки солидности, а у нас его нет',
+      solution: 'Имиджевая «визитка» для партнеров и госзакупок',
+      icon: 'Briefcase',
+      gradient: 'from-secondary/20 to-accent/5'
+    },
+  ];
+
   const faqs = [
     {
       question: 'Что если мне не понравится прототип?',
@@ -119,8 +167,8 @@ const Index = () => {
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="text-2xl font-bold gradient-text">WebStudio</div>
           <div className="hidden md:flex gap-8 text-sm">
+            <a href="#for-whom" className="hover:text-primary transition">Для кого</a>
             <a href="#how" className="hover:text-primary transition">Как работаем</a>
-            <a href="#why" className="hover:text-primary transition">Почему мы</a>
             <a href="#portfolio" className="hover:text-primary transition">Портфолио</a>
             <a href="#prices" className="hover:text-primary transition">Цены</a>
             <a href="#faq" className="hover:text-primary transition">FAQ</a>
@@ -173,7 +221,60 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="how" className="py-20 px-6 bg-gradient-to-b from-muted/50 to-background">
+      <section id="for-whom" className="py-20 px-6 bg-gradient-to-b from-muted/50 to-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold mb-4 gradient-text">Для кого эта услуга</h2>
+            <p className="text-muted-foreground text-lg">Узнайте, подходит ли сайт-визитка именно вам</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {targetAudience.map((audience, idx) => (
+              <Card 
+                key={idx}
+                className={`border-2 border-border hover:border-primary transition-all duration-300 hover-glow bg-gradient-to-br ${audience.gradient} backdrop-blur animate-scale-in`}
+                style={{ animationDelay: `${idx * 0.1}s` }}
+              >
+                <CardHeader>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center mb-4">
+                    <Icon name={audience.icon as any} size={28} className="text-primary" />
+                  </div>
+                  <CardTitle className="text-xl mb-1">{audience.title}</CardTitle>
+                  <CardDescription className="text-sm font-semibold text-foreground/70 mb-3">
+                    {audience.subtitle}
+                  </CardDescription>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {audience.examples}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="flex items-start gap-2 mb-2">
+                        <Icon name="AlertCircle" size={16} className="text-destructive mt-0.5 flex-shrink-0" />
+                        <span className="text-xs font-semibold text-destructive/90">Боль:</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        «{audience.pain}»
+                      </p>
+                    </div>
+                    <div>
+                      <div className="flex items-start gap-2 mb-2">
+                        <Icon name="CheckCircle2" size={16} className="text-primary mt-0.5 flex-shrink-0" />
+                        <span className="text-xs font-semibold text-primary">Решение:</span>
+                      </div>
+                      <p className="text-sm leading-relaxed">
+                        {audience.solution}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how" className="py-20 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="text-5xl font-bold mb-4 gradient-text">Как это работает</h2>
